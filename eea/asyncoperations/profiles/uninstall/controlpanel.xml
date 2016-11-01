@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<object name="portal_controlpanel">
+
+ <configlet
+  title="Monitor: Async bulk operations queue"
+  action_id="eea.asyncoperations"
+  appId="eea.asyncoperations"
+  remove="True" />
+
+</object>

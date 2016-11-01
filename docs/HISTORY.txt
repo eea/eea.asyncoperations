@@ -1,0 +1,7 @@
+Changelog
+=========
+
+1.0-dev - (unreleased)
+----------------------
+- Initial release
+  [refs #72531 lucas]

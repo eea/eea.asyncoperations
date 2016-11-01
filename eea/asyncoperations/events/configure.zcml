@@ -1,0 +1,15 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  i18n_domain="eea">
+
+  <subscriber
+    for="plone.app.async.interfaces.IQueueReady"
+    handler=".subscribers.configureQueue"
+    />
+
+  <subscriber
+    for="eea.asyncoperations.events.interfaces.IAsyncOperationsSaveProgress"
+    handler=".subscribers.saveJobProgress"
+    />
+
+</configure>

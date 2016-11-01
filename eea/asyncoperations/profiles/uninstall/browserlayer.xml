@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<layers>
+  <layer name="eea.asyncoperations.layer" remove="True" />
+</layers>

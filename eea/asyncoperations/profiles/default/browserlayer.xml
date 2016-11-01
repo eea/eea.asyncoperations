@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<layers>
+  <layer name="eea.asyncoperations.layer"
+    interface="eea.asyncoperations.browser.interfaces.ILayer" />
+</layers>
