@@ -30,4 +30,4 @@ class EEAFixture(PloneSandboxLayer):
 
 EEAFIXTURE = EEAFixture()
 FUNCTIONAL_TESTING = FunctionalTesting(bases=(EEAFIXTURE,),
-                                       name='EEAasyncoperations:Functional')
+                                       name='EEAAsyncOperations:Functional')

@@ -196,9 +196,9 @@ class RenameAsync(MoveAsync):
 
             context = self.context
             wrapper = IContextWrapper(context)(
-                folder_move_from=context.absolute_url(1),
-                folder_move_to=', '.join(newids),
-                folder_move_objects=', '.join(paths),
+                object_move_from=context.absolute_url(1),
+                object_move_to=', '.join(newids),
+                objects_to_move=', '.join(paths),
                 async_operations_email=email,
                 async_operation_type='rename',
                 email=email

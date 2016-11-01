@@ -18,7 +18,7 @@ from ZODB.POSException import ConflictError
 from ZPublisher.HTTPRequest import HTTPRequest
 from ZPublisher.HTTPResponse import HTTPResponse
 #from eea.asyncoperations.config import EEAMessageFactory as _
-from eea.asyncoperations.events.async import AsyncOperationSaveProgress
+from eea.asyncoperations.events.async import AsyncOperationsSaveProgress
 from eea.asyncoperations.interfaces import IContextWrapper
 from eea.asyncoperations.utils import renameObjectsByPaths
 from plone.uuid.interfaces import IUUID
@@ -379,10 +379,10 @@ def async_move(context, success_event, fail_event, **kwargs):
         oblist.append(ob)
 
     wrapper = IContextWrapper(context)(
-        folder_move_from=oblist and aq_parent(
+        object_move_from=oblist and aq_parent(
             aq_inner(oblist[0])).absolute_url(),
-        folder_move_to=context.absolute_url(),
-        folder_move_objects=', '.join([obj.getId() for obj in oblist]),
+        object_move_to=context.absolute_url(),
+        objects_to_move=', '.join([obj.getId() for obj in oblist]),
         async_operations_email=email
     )
 
@@ -431,9 +431,9 @@ def async_rename(context, success_event, fail_event, **kwargs):
         notify(fail_event(wrapper))
         raise ValueError(eNoItemsSpecified)
     wrapper = IContextWrapper(context)(
-        folder_move_from=context_rel_path,
-        folder_move_to=', '.join(newids),
-        folder_move_objects=', '.join(paths),
+        object_move_from=context_rel_path,
+        object_move_to=', '.join(newids),
+        objects_to_move=', '.join(paths),
         async_operations_email=email,
         email=email
     )

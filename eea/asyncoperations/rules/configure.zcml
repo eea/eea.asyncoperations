@@ -63,56 +63,56 @@
   <adapter
     for="eea.asyncoperations.interfaces.IContextWrapper"
     provides="plone.stringinterp.interfaces.IStringSubstitution"
-    factory=".adapters.FolderMoveFrom"
-    name="folder_move_from"
+    factory=".adapters.ObjectMoveFrom"
+    name="object_move_from"
     />
 
   <adapter
     for="eea.asyncoperations.interfaces.IContextWrapper"
     provides="plone.stringinterp.interfaces.IStringSubstitution"
-    factory=".adapters.FolderMoveTo"
-    name="folder_move_to"
+    factory=".adapters.ObjectMoveTo"
+    name="object_move_to"
     />
 
   <adapter
     for="eea.asyncoperations.interfaces.IContextWrapper"
     provides="plone.stringinterp.interfaces.IStringSubstitution"
-    factory=".adapters.FolderMoveObjects"
-    name="folder_move_objects"
+    factory=".adapters.ObjectsToMove"
+    name="objects_to_move"
     />
 
   <adapter
     for="eea.asyncoperations.interfaces.IContextWrapper"
     provides="plone.stringinterp.interfaces.IStringSubstitution"
-    factory=".adapters.FolderMoveEmail"
-    name="asyncoperations_email"
+    factory=".adapters.ObjectMoveEmail"
+    name="async_operations_email"
     />
 
   <adapter
     for="eea.asyncoperations.interfaces.IContextWrapper"
     provides="plone.stringinterp.interfaces.IStringSubstitution"
-    factory=".adapters.asyncoperationsError"
-    name="asyncoperations_error"
+    factory=".adapters.AsyncOperationsError"
+    name="async_operations_error"
     />
 
   <adapter
     for="eea.asyncoperations.interfaces.IContextWrapper"
     provides="plone.stringinterp.interfaces.IStringSubstitution"
-    factory=".adapters.asyncoperationsJobID"
-    name="asyncoperations_jobid"
+    factory=".adapters.AsyncOperationsJobID"
+    name="async_operations_jobid"
     />
 
     <adapter
         for="eea.asyncoperations.interfaces.IContextWrapper"
         provides="plone.stringinterp.interfaces.IStringSubstitution"
-        factory=".adapters.asyncoperationsQueueLength"
+        factory=".adapters.AsyncOperationsQueueLength"
         name="async_operations_queue_length"
     />
 
     <adapter
         for="eea.asyncoperations.interfaces.IContextWrapper"
         provides="plone.stringinterp.interfaces.IStringSubstitution"
-        factory=".adapters.asyncoperationsOperationType"
+        factory=".adapters.AsyncOperationsOperationType"
         name="async_operations_type"
     />
 </configure>

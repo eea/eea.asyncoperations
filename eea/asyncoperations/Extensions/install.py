@@ -34,7 +34,9 @@ def remove_content_rules(portal):
     storage = queryUtility(IRuleStorage)
     if not storage:
         return
-    ids = ["eea-asyncoperations-rule-fail", "eea-asyncoperations-rule-success",
+    ids = ["eea-asyncoperations-rule-added",
+           "eea-asyncoperations-move-rule-fail",
+           "eea-asyncoperations-move-rule-success",
            "eea-asyncoperations-rename-rule-fail",
            "eea-asyncoperations-rename-rule-success"]
     for i in ids:

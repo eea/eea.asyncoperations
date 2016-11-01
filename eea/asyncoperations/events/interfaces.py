@@ -18,7 +18,7 @@ class IAsyncMoveSuccess(IAsyncOperationsEvent):
     """
 
 
-class IasyncMoveFail(IAsyncOperationsEvent):
+class IAsyncMoveFail(IAsyncOperationsEvent):
     """ Async job for move failed
     """
 

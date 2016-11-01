@@ -3,47 +3,47 @@
 from plone.stringinterp.adapters import BaseSubstitution
 
 
-class FolderMoveFrom(BaseSubstitution):
-    """ Move folder from substitution
+class ObjectMoveFrom(BaseSubstitution):
+    """ Move object from substitution
     """
     category = u'asyncoperations'
-    description = u'Move folder from'
+    description = u'Move object from'
 
     def safe_call(self):
         """ Safe call
         """
-        return getattr(self.wrapper, 'folder_move_from', '')
+        return getattr(self.wrapper, 'object_move_from', '')
 
 
-class FolderMoveTo(BaseSubstitution):
-    """ Move folder to substitution
+class ObjectMoveTo(BaseSubstitution):
+    """ Move object to substitution
     """
     category = u'asyncoperations'
-    description = u'Move folder to'
+    description = u'Move object to'
 
     def safe_call(self):
         """ Safe call
         """
-        return getattr(self.wrapper, 'folder_move_to', '')
+        return getattr(self.wrapper, 'object_move_to', '')
 
 
-class FolderMoveObjects(BaseSubstitution):
-    """ Move folder objects substitution
+class ObjectsToMove(BaseSubstitution):
+    """ Move objects substitution
     """
     category = u'asyncoperations'
-    description = u'Move folder objects'
+    description = u'Move objects'
 
     def safe_call(self):
         """ Safe call
         """
-        return getattr(self.wrapper, 'folder_move_objects', '')
+        return getattr(self.wrapper, 'objects_to_move', '')
 
 
-class FolderMoveEmail(BaseSubstitution):
-    """ Move folder email substitution
+class ObjectMoveEmail(BaseSubstitution):
+    """ Move object email substitution
     """
     category = u'asyncoperations'
-    description = u'Move folder e-mail'
+    description = u'Move object e-mail'
 
     def safe_call(self):
         """ Safe call
