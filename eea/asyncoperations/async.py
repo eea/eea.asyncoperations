@@ -175,7 +175,7 @@ def manage_pasteObjects_no_events(self, cb_copy_data=None, REQUEST=None):
 
     steps = oblist and int(100/len(oblist)) or 0
 
-    notify(AsyncOperationSaveProgress(
+    notify(AsyncOperationsSaveProgress(
         self, operation='initialize', job_id=job_id, oblist_id=[
             (o.getId(), o.Title()) for o in oblist
             ]))
@@ -190,7 +190,7 @@ def manage_pasteObjects_no_events(self, cb_copy_data=None, REQUEST=None):
             oid = self._get_id(orig_id)
             result.append({'id': orig_id, 'new_id': oid})
 
-            notify(AsyncOperationSaveProgress(
+            notify(AsyncOperationsSaveProgress(
                 self,
                 operation='sub_progress',
                 job_id=job_id,
@@ -200,7 +200,7 @@ def manage_pasteObjects_no_events(self, cb_copy_data=None, REQUEST=None):
             ob = ob._getCopy(self)
             ob._setId(oid)
 
-            notify(AsyncOperationSaveProgress(
+            notify(AsyncOperationsSaveProgress(
                 self,
                 operation='sub_progress',
                 job_id=job_id,
@@ -212,7 +212,7 @@ def manage_pasteObjects_no_events(self, cb_copy_data=None, REQUEST=None):
             ob = self._getOb(oid)
             ob.wl_clearLocks()
 
-            notify(AsyncOperationSaveProgress(
+            notify(AsyncOperationsSaveProgress(
                 self,
                 operation='sub_progress',
                 job_id=job_id,
@@ -224,7 +224,7 @@ def manage_pasteObjects_no_events(self, cb_copy_data=None, REQUEST=None):
 
             compatibilityCall('manage_afterClone', ob, ob)
 
-            notify(AsyncOperationSaveProgress(
+            notify(AsyncOperationsSaveProgress(
                 self,
                 operation='sub_progress',
                 job_id=job_id,
@@ -232,7 +232,7 @@ def manage_pasteObjects_no_events(self, cb_copy_data=None, REQUEST=None):
                 progress=1
             ))
 
-            notify(AsyncOperationSaveProgress(
+            notify(AsyncOperationsSaveProgress(
                 self,
                 operation='progress',
                 job_id=job_id,
@@ -260,7 +260,7 @@ def manage_pasteObjects_no_events(self, cb_copy_data=None, REQUEST=None):
             # along to the new location if needed.
             ob.manage_changeOwnershipType(explicit=1)
 
-            notify(AsyncOperationSaveProgress(
+            notify(AsyncOperationsSaveProgress(
                 self,
                 operation='sub_progress',
                 job_id=job_id,
@@ -286,7 +286,7 @@ def manage_pasteObjects_no_events(self, cb_copy_data=None, REQUEST=None):
                     "%s._delObject without suppress_events is discouraged.",
                     orig_container.__class__.__name__)
 
-            notify(AsyncOperationSaveProgress(
+            notify(AsyncOperationsSaveProgress(
                 self,
                 operation='sub_progress',
                 job_id=job_id,
@@ -310,7 +310,7 @@ def manage_pasteObjects_no_events(self, cb_copy_data=None, REQUEST=None):
             # try to make ownership implicit if possible
             ob.manage_changeOwnershipType(explicit=0)
 
-            notify(AsyncOperationSaveProgress(
+            notify(AsyncOperationsSaveProgress(
                 self,
                 operation='sub_progress',
                 job_id=job_id,
@@ -320,7 +320,7 @@ def manage_pasteObjects_no_events(self, cb_copy_data=None, REQUEST=None):
 
             reindex_object(ob, recursive=1)
 
-            notify(AsyncOperationSaveProgress(
+            notify(AsyncOperationsSaveProgress(
                 self,
                 operation='sub_progress',
                 job_id=job_id,
@@ -328,14 +328,14 @@ def manage_pasteObjects_no_events(self, cb_copy_data=None, REQUEST=None):
                 progress=1
             ))
 
-            notify(AsyncOperationSaveProgress(
+            notify(AsyncOperationsSaveProgress(
                 self,
                 operation='progress',
                 job_id=job_id,
                 progress=steps*(i+1)/100
             ))
 
-    notify(AsyncOperationSaveProgress(
+    notify(AsyncOperationsSaveProgress(
         self, operation='progress', job_id=job_id,
         progress=1
     ))
@@ -441,7 +441,7 @@ def async_rename(context, success_event, fail_event, **kwargs):
     try:
         for i, v in enumerate(newids):
             obdict[v] = newtitles[i]
-        notify(AsyncOperationSaveProgress(
+        notify(AsyncOperationsSaveProgress(
                 context, operation='initialize', operation_type='Renamed',
                 job_id=job_id, oblist_id=[(o, obdict[o]) for o in obdict]))
         _success, failure = renameObjectsByPaths(context, paths,
@@ -451,7 +451,7 @@ def async_rename(context, success_event, fail_event, **kwargs):
                 foid = obj_path.split('/')[-1]
                 if foid in obdict:
                     del obdict[foid]
-                notify(AsyncOperationSaveProgress(
+                notify(AsyncOperationsSaveProgress(
                     context,
                     operation='sub_progress',
                     job_id=job_id,
@@ -463,7 +463,7 @@ def async_rename(context, success_event, fail_event, **kwargs):
         wrapper.error = err.message
         wrapper.job_id = job_id
         for oid in obdict:
-            notify(AsyncOperationSaveProgress(
+            notify(AsyncOperationsSaveProgress(
                 context,
                 operation='sub_progress',
                 job_id=job_id,
@@ -471,7 +471,7 @@ def async_rename(context, success_event, fail_event, **kwargs):
                 progress=.75
             ))
 
-        notify(AsyncOperationSaveProgress(
+        notify(AsyncOperationsSaveProgress(
             context,
             operation='progress',
             job_id=job_id,
@@ -487,7 +487,7 @@ def async_rename(context, success_event, fail_event, **kwargs):
     del anno['async_operations_job']
 
     for oid in obdict:
-        notify(AsyncOperationSaveProgress(
+        notify(AsyncOperationsSaveProgress(
             context,
             operation='sub_progress',
             job_id=job_id,
@@ -495,7 +495,7 @@ def async_rename(context, success_event, fail_event, **kwargs):
             progress=1
         ))
 
-    notify(AsyncOperationSaveProgress(
+    notify(AsyncOperationsSaveProgress(
         context,
         operation='progress',
         job_id=job_id,
