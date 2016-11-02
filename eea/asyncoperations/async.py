@@ -339,7 +339,9 @@ def manage_pasteObjects_no_events(self, cb_copy_data=None, REQUEST=None):
         self, operation='progress', job_id=job_id,
         progress=1
     ))
-    del anno['async_operations_job']
+    
+    if anno.has_key('async_operations_job'):
+        del anno['async_operations_job']
 
     return result
 
@@ -484,7 +486,8 @@ def async_rename(context, success_event, fail_event, **kwargs):
             message=err.message,
             action='manage_main',
         ))
-    del anno['async_operations_job']
+    if anno.has_key('async_operations_job'):
+        del anno['async_operations_job']
 
     for oid in obdict:
         notify(AsyncOperationsSaveProgress(
