@@ -260,7 +260,8 @@ class AsyncOperationsQueueJSON(JobsJSON):
                 'failure': self.format_failure(job),
                 'operation': job.args[-1].__name__.split('_')[1],
                 'user': job.args[-2],
-                'started': self.format_datetime(job.active_start),
+                'started': self.format_datetime(job.active_start) if \
+                        job.active_start else '',
                 'objects': '\n '.join(job.kwargs.get('paths', []))
             })
 
