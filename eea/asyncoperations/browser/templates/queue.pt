@@ -25,7 +25,7 @@
         .job-item { margin-bottom: 1em; }
     </style>
 
-    <h1 class="documentFirstHeading">Async operations job queue</h1>
+    <h1 class="documentFirstHeading">Async bulk operations jobs queue</h1>
 
     <p class="discreet">Manage jobs queued for asynchronous processing.</p>
 
