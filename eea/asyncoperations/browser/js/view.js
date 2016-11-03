@@ -34,7 +34,7 @@ jQuery(document).ready(function($) {
     });
     $input.appendTo($el.find(".formControls"));
   };
-  // set orig_template for rename_confirmation for to asyn_move in order
+  // set orig_template for rename_confirmation for the async rename in order
   // to enforce consistent behaviour as async or normal paste goes to
   // async_operation page
   $("#rename_confirmation").find("input[name='orig_template']").attr('value', 'async_operation');

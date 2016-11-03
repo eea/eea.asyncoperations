@@ -64,10 +64,12 @@
             </tal:locked_items>
 
         <tal:queue_length tal:condition="context/@@async_queue_length">
-            <p i18n:translate="async_operation_queue_length"
-                >There are already
-                <span i18n:name="async_queue_length" tal:content="context/@@async_queue_length"></span>jobs in the queue</p>
-            <p i18n:translate="async_operation_many_jobs">If this number is too big you should consider using the non async operation</p>
+            <div class="portalMessage informationMessage">
+                <p i18n:translate="async_operation_queue_length"
+                    >There are already
+                    <span i18n:name="async_queue_length" tal:content="context/@@async_queue_length"></span>jobs in the queue</p>
+                <p i18n:translate="async_operation_many_jobs">If this number is too big you should consider using the non async operation</p>
+            </div>
         </tal:queue_length>
 
 
@@ -98,6 +100,13 @@
                 </tal:items>
 
                 <tal:inputs tal:condition="python: can_perform_rename">
+
+                    <div class="portalMessage informationMessage">
+                        <p>We recommand you to use the 'Rename (async)' operation if the object(s) have many children and you are willing to wait
+                        for the job to go throught the waiting queue.</p>
+                        <p>Otherwise we suggest you use the normal 'Rename' button</p>
+                    </div>
+
                     <input class="destructive"
                            type="submit"
                            value="Rename (async)"
