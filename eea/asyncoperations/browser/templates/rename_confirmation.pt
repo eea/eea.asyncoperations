@@ -12,16 +12,23 @@
 
 <metal:main fill-slot="main"
          tal:define="useSelf context/@@plone_context_state/folder | nothing;
-        folder_warning python:useSelf and context.portal_type != 'Topic';
-        item_locked context/@@plone_lock_info/is_locked_for_current_user | nothing">
+                folder_warning python:useSelf and context.portal_type != 'Topic';
+                item_locked context/@@plone_lock_info/is_locked_for_current_user | nothing;
+                paths request/paths|python:[];
+                items python:context.getObjectsFromPathList(paths) or [context];
+                locked_items python:[item for item in items if item.restrictedTraverse('@@plone_lock_info').is_locked_for_current_user()];
+                non_locked_items python:[item for item in items if item not in locked_items];
+                has_only_locked_items python: locked_items == items;
+                can_perform_rename python: False if True in [item_locked, has_only_locked_items] else True;
+                errors options/state/getErrors|nothing;
+                checkPermission nocall: context/portal_membership/checkPermission;">
 
     <h1 class="documentFirstHeading"
              i18n:translate="alert_rename_locked_item"
-             tal:condition="item_locked">
+             tal:condition="python: not can_perform_rename">
         This item can not be renamed because it is currently locked by another user.
     </h1>
-
-    <tal:block condition="not:item_locked">
+    <tal:block condition="python: can_perform_rename">
         <h1 class="documentFirstHeading"
                  tal:condition="folder_warning">
           <span i18n:translate="alert_really_rename_folder">
@@ -37,28 +44,32 @@
     </tal:block>
 
     <div id="content-core">
-        <tal:defines tal:define="paths request/paths|python:[];
-                items python:context.getObjectsFromPathList(paths) or [context];
-                errors options/state/getErrors|nothing;
-                checkPermission nocall: context/portal_membership/checkPermission;">
 
             <tal:block tal:condition="python:paths and not items"
                      tal:replace="python:context.redirectToReferrer('The item(s) you selected are no longer available.')"/>
-        <ul>
-            <li tal:repeat="item items">
-                <span tal:content="item/Title">The item title (ID)</span>
-            </li>
-        </ul>
-        
+
+            <ul>
+                <li tal:repeat="item non_locked_items">
+                    <span tal:content="item/Title">The item title (ID)</span>
+                </li>
+            </ul>
+
+            <tal:locked_items tal:condition="python: locked_items">
+                <h2 tal:condition="can_perform_rename">Items skipped since they are locked by other users</h2>
+                <ul>
+                    <li tal:repeat="item locked_items">
+                        <span tal:content="item/Title">The item title (ID)</span>
+                    </li>
+                </ul>
+            </tal:locked_items>
+
         <tal:queue_length tal:condition="context/@@async_queue_length">
-            <div class="portalMessage infoMessage">
-                <p i18n:translate="async_operation_queue_length" 
-                    >There are already 
-                    <span i18n:name="async_queue_length" tal:content="context/@@async_queue_length"></span> jobs in the queue</p>
-                <p i18n:translate="async_operation_many_jobs">If this number is too big you should consider using the non async operation</p>
-            </div> 
+            <p i18n:translate="async_operation_queue_length"
+                >There are already
+                <span i18n:name="async_queue_length" tal:content="context/@@async_queue_length"></span>jobs in the queue</p>
+            <p i18n:translate="async_operation_many_jobs">If this number is too big you should consider using the non async operation</p>
         </tal:queue_length>
-            
+
 
         <form method="POST"
               action="#"
@@ -75,10 +86,10 @@
                          tal:condition="request/orig_template|nothing"
                          tal:attributes="value request/orig_template"/>
 
-                <tal:items tal:repeat="obj items">
+                <tal:items tal:repeat="obj non_locked_items">
                     <tal:block define="item obj/getId;
                                        item_path python:'/'.join(obj.getPhysicalPath());">
-                        
+
                                 <input type="hidden"
                                        name="paths:list"
                                        value="fav_999816073"
@@ -86,21 +97,23 @@
                     </tal:block>
                 </tal:items>
 
+                <tal:inputs tal:condition="python: can_perform_rename">
+                    <input class="destructive"
+                           type="submit"
+                           value="Rename (async)"
+                           name="form.button.async_rename"
 
-                <input class="destructive"
-                       type="submit"
-                       value="Rename (async)"
-                       name="form.button.async_rename"
-                         tal:condition="not:item_locked"
-                         i18n:attributes="value;"
-                />
-                <input class="destructive"
-                       type="submit"
-                       value="Rename"
-                       name="form.button.rename"
-                         tal:condition="not:item_locked"
-                         i18n:attributes="value;"
-                />
+                             i18n:attributes="value;"
+                    />
+                    <input class="destructive"
+                           type="submit"
+                           value="Rename"
+                           name="form.button.rename"
+                             tal:condition="not:item_locked"
+                             i18n:attributes="value;"
+                    />
+                </tal:inputs>
+
                 <input class="standalone"
                        type="submit"
                        value="Cancel"
@@ -113,11 +126,9 @@
 
         </form>
 
-        </tal:defines>
     </div>
 
 </metal:main>
 
 </body>
 </html>
-
