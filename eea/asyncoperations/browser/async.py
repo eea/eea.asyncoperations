@@ -229,7 +229,7 @@ class AsyncOperationsQueueJSON(JobsJSON):
         """ Filter jobs
         """
         for job_status, job in self._find_jobs():
-            if len(job.args) == 0:
+            if not job.args:
                 continue
             job_context = job.args[0]
             if (isinstance(job_context, tuple) and

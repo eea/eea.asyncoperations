@@ -173,7 +173,7 @@ def manage_pasteObjects_no_events(self, cb_copy_data=None, REQUEST=None):
 
     result = []
 
-    steps = oblist and int(100/len(oblist)) or 0
+    steps = int((100) / (len(oblist))) if oblist else 0
 
     notify(AsyncOperationsSaveProgress(
         self, operation='initialize', job_id=job_id, oblist_id=[
