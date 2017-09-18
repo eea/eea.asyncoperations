@@ -25,28 +25,28 @@
         .job-item { margin-bottom: 1em; }
     </style>
 
-    <h1 class="documentFirstHeading">Async bulk operations jobs queue</h1>
+    <h1 class="documentFirstHeading" i18n:translate="">Async bulk operations jobs queue</h1>
 
-    <p class="discreet">Manage jobs queued for asynchronous processing.</p>
+    <p class="discreet" i18n:translate="">Manage jobs queued for asynchronous processing.</p>
 
     <form class="enableFormTabbing">
       <fieldset id="queued-jobs">
-        <legend>Queued (0)</legend>
+        <legend i18n:translate="">Queued (0)</legend>
         <table class="listing"></table>
       </fieldset>
 
       <fieldset id="active-jobs">
-        <legend>Active (0)</legend>
+        <legend i18n:translate="">Active (0)</legend>
         <table class="listing"></table>
       </fieldset>
 
       <fieldset id="dead-jobs">
-        <legend>Aborted (0)</legend>
+        <legend i18n:translate="">Aborted (0)</legend>
         <table class="listing"></table>
       </fieldset>
 
       <fieldset id="completed-jobs">
-        <legend>Completed (0)</legend>
+        <legend i18n:translate="">Completed (0)</legend>
         <table class="listing"></table>
       </fieldset>
     </form>

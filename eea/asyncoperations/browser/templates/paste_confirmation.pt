@@ -57,9 +57,9 @@
                 id="paste_confirmation">
 
             <div class="portalMessage informationMessage">
-                <p>We recommand you to use the 'Paste (async)' operation if the object(s) have many children and you are willing to wait
+                <p i18n:translate="">We recommand you to use the 'Paste (async)' operation if the object(s) have many children and you are willing to wait
                 for the job to go throught the waiting queue.</p>
-                <p>Otherwise we suggest you use the normal 'Paste' button</p>
+                <p i18n:translate="">Otherwise we suggest you use the normal 'Paste' button</p>
             </div>
 
             <div class="formControls">

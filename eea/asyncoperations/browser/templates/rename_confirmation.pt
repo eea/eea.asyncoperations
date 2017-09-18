@@ -55,7 +55,7 @@
             </ul>
 
             <tal:locked_items tal:condition="python: locked_items">
-                <h2 tal:condition="can_perform_rename">Items skipped since they are locked by other users</h2>
+                <h2 tal:condition="can_perform_rename" i18n:translate="">Items skipped since they are locked by other users</h2>
                 <ul>
                     <li tal:repeat="item locked_items">
                         <span tal:content="item/Title">The item title (ID)</span>
@@ -102,9 +102,9 @@
                 <tal:inputs tal:condition="python: can_perform_rename">
 
                     <div class="portalMessage informationMessage">
-                        <p>We recommand you to use the 'Rename (async)' operation if the object(s) have many children and you are willing to wait
+                        <p i18n:translate="">We recommand you to use the 'Rename (async)' operation if the object(s) have many children and you are willing to wait
                         for the job to go throught the waiting queue.</p>
-                        <p>Otherwise we suggest you use the normal 'Rename' button</p>
+                        <p i18n:translate="">Otherwise we suggest you use the normal 'Rename' button</p>
                     </div>
 
                     <input class="destructive"
