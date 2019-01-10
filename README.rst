@@ -1,8 +1,12 @@
 ====================
 EEA Async Operations
 ====================
-.. image:: http://ci.eionet.europa.eu/job/eea/job/eea.asyncoperations/job/master/badge/icon
-  :target: http://ci.eionet.europa.eu/job/eea/job/eea.asyncoperations/job/master/display/redirect
+.. image:: https://ci.eionet.europa.eu/buildStatus/icon?job=eea/eea.asyncoperations/develop
+  :target: https://ci.eionet.europa.eu/job/eea/job/eea.asyncoperations/job/develop/display/redirect
+  :alt: Develop
+.. image:: https://ci.eionet.europa.eu/buildStatus/icon?job=eea/eea.asyncoperations/master
+  :target: https://ci.eionet.europa.eu/job/eea/job/eea.asyncoperations/job/master/display/redirect
+  :alt: Master
 
 Package for moving and renaming  large folders
 
